@@ -1,4 +1,5 @@
 #include "Node.h"
+
 using namespace std;
 
 template <class T>
@@ -206,121 +207,58 @@ template <class T>
 T LinkedList<T>::get(int pos)
 {
     Node<T> *curr = head;
-    int i = 0;
-
-    if (curr == nullptr)
+    for (int i = 1 ; i <= pos; i++)
     {
-        return NULL;
+        curr = curr->getNext();
     }
-
-    else 
-    {
-        if (pos >= 0 && pos <= size)
-        {
-            while (curr != nullptr)
-            {
-                if (i = pos)
-                {
-                    return curr->getData();
-                }
-                i++;
-                curr = curr->getNext();
-            }
-        }
-
-        else
-        {
-            return NULL;
-        }
-        
-    }
+    return curr->getData();
 }
 
 template <class T>
 T LinkedList<T>::set(T data, int pos)
 {
     Node<T> *curr = head;
-    T temp;
 
-    if (pos < 0 || pos > size)
+    for (int i = 1; i <= pos; i++)
     {
-        return NULL;
+        curr = curr->getNext();
     }
-
-    for (int i = 0; i < pos && head != nullptr; i++)
-    {
-        if (i == pos - 1)
-        {
-            temp = head->data;
-            head->data = data;
-            return temp;
-        }
-    }
+    T auxData = curr->getData();
+    curr->setData(data);
+    return auxData;
 }
 
 template <class T>
 bool LinkedList<T>::change(int pos1, int pos2)
 {
-    Node<T> *temp;
-    Node<T> *refhead = head;
-    Node<T> *pos1curr = head;
-    Node<T> *pos1prev = NULL;
-    Node<T> *pos2curr = head;
-    Node<T> *pos2prev = NULL;
-
-    if (head == nullptr || size == 1)
+    if (pos1 < 0 || pos2 < 0 || pos1 >= size || pos2 >= size)
     {
         return false;
     }
 
-    else if (pos1 >= 0 && pos1 <= size && pos2 <= 0 && pos2 >= size)
+    if (pos1 == pos2)
     {
-        if (pos1 == pos2)
-        {
-            return true;
-        }   
-
-        //Buscar y guardar anterior a 1
-        while (pos1curr && pos1curr->data != pos1)
-        {
-            pos1prev = pos1curr;
-            pos1curr= pos1curr->next;
-        }
-
-        //Buscar y guardar anterior a 2
-        while (pos2curr && pos2curr->data != pos2)
-        {
-            pos2prev = pos2curr;
-            pos2curr= pos2curr->next;
-        }
-
-        //pos1 not head
-        if (pos1curr != nullptr)
-        {
-            pos1prev->next = pos2curr;
-        }
-
-        //pos1 head
-        else
-        {
-            *refhead = pos2curr;
-        }
-        
-        //pos2 not head
-        if (pos2curr != nullptr)
-        {
-            pos2prev->next = pos1curr;
-        }
-
-        //pos2 head
-        else
-        {
-            *refhead = pos1curr;
-        }
-
-        *temp = pos2curr->next;
-        pos2curr->next = pos1curr->next;
-        pos1curr->next = temp;
         return true;
     }
+
+    int posMin = (pos1 < pos2) ? pos1 : pos2;
+    int posMax = (pos1 > pos2) ? pos1 : pos2;
+
+    Node<T> *curr1 = head;
+    for (int i = 1; i <= posMin; i++)
+    {
+        curr1 = curr1->getNext();
+    }
+
+    Node<T> *curr2 = curr1;
+    for (int i = posMin; i < posMax; i++)
+    {
+        curr2 = curr2->getNext();
+    }
+
+    T auxData = curr1->getData();
+    curr1->setData(curr2->getData());
+    curr2->setData(auxData);
+
+    return true;
 }
