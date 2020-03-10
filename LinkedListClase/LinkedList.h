@@ -21,6 +21,7 @@ class LinkedList {
         bool change(int pos1, int pos2);
         void print();
         int getSize();
+        void reverse();
     private:
         Node<T> *head;
         int size;
@@ -262,4 +263,29 @@ bool LinkedList<T>::change(int pos1, int pos2)
     curr2->setData(auxData);
 
     return true;
+}
+
+template <class T>
+void LinkedList<T>::reverse()
+{
+    if (size == 0 || size == 1)
+    {
+
+    }
+
+    else
+    {
+        Node<T> *curr = head;
+        Node<T> *prev = NULL;
+        Node<T> *next = NULL;
+
+        while (curr != NULL)
+        {
+            next = curr->getNext();
+            curr->getNext() = prev;
+            prev = curr;
+            curr = next;
+        }
+    }
+    head = prev;
 }
