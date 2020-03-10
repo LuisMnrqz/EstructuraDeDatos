@@ -270,22 +270,22 @@ void LinkedList<T>::reverse()
 {
     if (size == 0 || size == 1)
     {
-
+        NULL;
     }
 
     else
     {
         Node<T> *curr = head;
         Node<T> *prev = NULL;
-        Node<T> *next = NULL;
+        Node<T> *sig = head;
 
         while (curr != NULL)
         {
-            next = curr->getNext();
+            sig = sig->getNext();
             curr->getNext() = prev;
             prev = curr;
-            curr = next;
+            curr = sig;
         }
+        head = prev;
     }
-    head = prev;
 }

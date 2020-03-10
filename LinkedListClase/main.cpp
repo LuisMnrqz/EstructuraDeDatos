@@ -1,8 +1,7 @@
 #include <iostream>
+#include "LinkedList.h"
 
 using namespace std;
-
-#include "LinkedList.h"
 
 int main()
 {
