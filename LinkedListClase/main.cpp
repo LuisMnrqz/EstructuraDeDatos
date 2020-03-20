@@ -5,15 +5,17 @@ using namespace std;
 
 int main()
 {
-    LinkedList<string> lista;
-
-    lista.addFirst("HOLA");
+    bool b;
+    LinkedList<int> lista1;
+    LinkedList<int> lista2;
+    lista1.addFirst(3);
+    lista2.addFirst(2);
+    b = lista1 == lista2;
+    /*lista.addFirst("HOLA");
     lista.addFirst("CRAYOLA");
     lista.addFirst("AQUI");
-    lista.addFirst("ESTOY");
-    lista.print();
-    lista.reverse();
-    lista.print();
+    lista.addFirst("ESTOY");*/
+    cout << boolalpha << b;
     /*lista.deleteFirst();
     lista.print();
     lista.addFirst("LUIS");
