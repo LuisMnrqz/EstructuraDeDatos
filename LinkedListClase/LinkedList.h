@@ -27,7 +27,6 @@ class LinkedList {
         void operator+=(const LinkedList<T> &otra);
         LinkedList(const LinkedList<T> &otra);
         void operator=(const LinkedList<T> &otra);
-        friend void operator<<(ostream&, LinkedList<T>);
     private:
         Node<T> *head;
         int size;
@@ -274,7 +273,23 @@ bool LinkedList<T>::change(int pos1, int pos2)
 template <class T>
 void LinkedList<T>::reverse()
 {
+    Node<T> *nodo = head;
 
+    if (nodo == NULL) 
+    {
+        return NULL;
+    } 
+
+    if (node->next == NULL) 
+    { 
+        head = node; 
+        return node; 
+    } 
+
+    Node* node1 = reverse(node->next); 
+    node1->next = node; 
+    node->next = NULL; 
+    return node; 
 }
 
 template <class T>
