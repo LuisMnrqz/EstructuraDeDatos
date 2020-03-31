@@ -273,7 +273,19 @@ bool LinkedList<T>::change(int pos1, int pos2)
 template <class T>
 void LinkedList<T>::reverse()
 {
-    
+    Node<T> *nodo = head;
+    if (nodo == NULL) 
+    {
+        return; 
+    }
+        if (nodo->next == NULL) { 
+            head = nodo; 
+            return; 
+        } 
+        Node<T> *nodo1 = reverse(nodo->next); 
+        nodo1->next = nodo; 
+        nodo->next = NULL; 
+        return;
 }
 
 template <class T>
