@@ -26,7 +26,7 @@ using namespace std;
 /*top pop top pop
 front pop front pop*/
 
-void processStack(stack <int> &stack, int &a, int &b) 
+void processStack(stack<int> &stack, int &a, int &b) 
 {
 	a = stack.top();
 	stack.pop();
@@ -34,7 +34,7 @@ void processStack(stack <int> &stack, int &a, int &b)
 	stack.pop();
 }
 
-void processQueue(queue <int> &queue, int &a, int &b) 
+void processQueue(queue<int> &queue, int &a, int &b) 
 {
 	a = queue.front();
 	queue.pop();
@@ -42,7 +42,7 @@ void processQueue(queue <int> &queue, int &a, int &b)
 	queue.pop();
 }
 
-void processPriorQueue(priority_queue <int, vector<int>, greater<int> > &priorqueue, int &a, int &b) 
+void processPriorQueue(priority_queue<int, vector<int>, greater<int> > &priorqueue, int &a, int &b) 
 {
 	a = priorqueue.top();
 	priorqueue.pop();
@@ -60,7 +60,7 @@ int main() {
   	//Pila y Filas
   	stack<int> stack;
   	queue<int> queue;
-	priority_queue<int, vector<int>, greater<int> > priorqueue; //default valor mayor
+	priority_queue<int, vector<int>, greater<int> > priorqueue; //valor menor
 
   	//Proceso
 	getline(cin, data);
