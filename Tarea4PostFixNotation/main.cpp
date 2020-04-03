@@ -1,11 +1,11 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <queue>
 #include <stack>
-#include <cstdlib>
+#include <queue>
 
 using namespace std;
+
 /* INPUT
 7 4 - 5 *
 3 2 4 * +
@@ -14,110 +14,134 @@ using namespace std;
 5 3 5 - * 11 2 - 1 * -
 #
 */
-void asignacionStack( stack <int> &miStack, int &iX, int &iY) 
+
+/* OUTPUT
+15   -15   15
+11   10   10
+6   2   4
+630   -412   630
+-19   41   3
+*/
+
+/*top pop top pop
+front pop front pop*/
+
+void processStack(stack <int> &stack, int &a, int &b) 
 {
-	iX = miStack.top();
-	miStack.pop();
-	iY = miStack.top();
-	miStack.pop();
+	a = stack.top();
+	stack.pop();
+	b = stack.top();
+	stack.pop();
 }
 
-void asignacionQueue( queue <int> &miQ, int &iX, int &iY) 
+void processQueue(queue <int> &queue, int &a, int &b) 
 {
-	iX = miQ.front();
-	miQ.pop();
-	iY = miQ.front();
-	miQ.pop();
+	a = queue.front();
+	queue.pop();
+	b = queue.front();
+	queue.pop();
 }
 
-void asignacionPQueue( priority_queue < int, vector<int>, greater<int> > &miPQ, int &iX, int &iY) 
+void processPriorQueue(priority_queue <int, vector<int>, greater<int> > &priorqueue, int &a, int &b) 
 {
-	iX = miPQ.top();
-	miPQ.pop();
-	iY = miPQ.top();
-	miPQ.pop();
+	a = priorqueue.top();
+	priorqueue.pop();
+	b = priorqueue.top();
+	priorqueue.pop();
 }
 
 int main() {
 
+  	//Variables
+  	int x, y;
+  	int z;
 	string d, data;
-	int id, iX, iY;
-	priority_queue< int, vector<int>, greater<int> > miPQ;
-	stack <int> miStack;
-	queue <int> miQ;
 
+  	//Pila y Filas
+  	stack<int> stack;
+  	queue<int> queue;
+	priority_queue<int, vector<int>, greater<int> > priorqueue; //default valor mayor
+
+  	//Proceso
 	getline(cin, data);
-	while( data != "#") 
+  	cout << endl << endl;
+
+	while (data != "#") 
 	{
 		stringstream ss;
 		ss << data;
-		while(ss >> d) 
+
+    	//Stack
+    	//Queue
+    	//PriorQueue
+
+		while (ss >> d) 
 		{
-			if( d == "+" ) 
+      		//Suma
+			if (d == "+") 
 			{
-				//Stack
-				asignacionStack( miStack, iX, iY );
-				miStack.push(iY + iX);
-				//Queue
-				asignacionQueue( miQ, iX, iY );
-				miQ.push(iY + iX);
-				//Priority Queue
-				asignacionPQueue( miPQ, iX, iY);
-				miPQ.push(iY + iX);
+				processStack(stack, x, y);
+				stack.push(y + x);
+
+				processQueue(queue, x, y);
+				queue.push(y + x);
+        
+				processPriorQueue(priorqueue, x, y);
+				priorqueue.push(y + x);
 			}
 			
-			else if( d == "-" ) 
+      		//Resta
+			else if (d == "-") 
 			{
-				//Stack
-				asignacionStack( miStack, iX, iY );
-				miStack.push(iY - iX);
-				//Queue
-				asignacionQueue( miQ, iX, iY );
-				miQ.push(iY - iX);
-				//Priority Queue
-				asignacionPQueue( miPQ, iX, iY);
-				miPQ.push(iY - iX);
+				processStack(stack, x, y);
+				stack.push(y - x);
+
+				processQueue(queue, x, y);
+				queue.push(y - x);
+
+				processPriorQueue(priorqueue, x, y);
+				priorqueue.push(y - x);
 			} 
 			
-			else if( d == "/" ) 
+      		//Mult
+			else if (d == "*") 
 			{
-				//Stack
-				asignacionStack( miStack, iX, iY );
-				miStack.push(iY / iX);
-				//Queue
-				asignacionQueue( miQ, iX, iY );
-				miQ.push(iY / iX);
-				//Priority Queue
-				asignacionPQueue( miPQ, iX, iY);
-				miPQ.push(iY / iX);
+				processStack(stack, x, y);
+				stack.push(x * y);
+
+				processQueue(queue, x, y);
+				queue.push(y * x);
+
+				processPriorQueue(priorqueue, x, y);
+				priorqueue.push(y * x);
 			} 
 			
-			else if( d == "*" ) 
+      		//Div
+			else if(d == "/") 
 			{
-				//Stack
-				asignacionStack( miStack, iX, iY );
-				miStack.push(iY * iX);
-				//Queue
-				asignacionQueue( miQ, iX, iY );
-				miQ.push(iY * iX);
-				//Priority Queue
-				asignacionPQueue( miPQ, iX, iY);
-				miPQ.push(iY * iX);
+				processStack(stack, x, y);
+				stack.push(y / x);
+
+				processQueue(queue, x, y);
+				queue.push(y / x);
+
+				processPriorQueue(priorqueue, x, y);
+				priorqueue.push(y / x);
 			} 
-			
+
 			else 
 			{
-				istringstream(d) >> id;
-				miStack.push(id);
-				miQ.push(id);
-				miPQ.push(id);
+				istringstream(d) >> z;
+				stack.push(z);
+				queue.push(z);
+				priorqueue.push(z);
 			}
 		}
-
-		cout << miStack.top() << " " << miQ.front() << " " << miPQ.top() << endl;
-		miStack.pop();
-		miQ.pop();
-		miPQ.pop();
+    	//Resultados 3 espacios de separacion
+		cout << stack.top() << "   " << queue.front() << "   " << priorqueue.top() << endl;
+		stack.pop();
+		queue.pop();
+		priorqueue.pop();
 		getline(cin, data);
 	}
 	return 0;
