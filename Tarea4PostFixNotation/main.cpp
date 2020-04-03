@@ -82,10 +82,8 @@ int main() {
 			{
 				processStack(stack, x, y);
 				stack.push(y + x);
-
 				processQueue(queue, x, y);
 				queue.push(y + x);
-        
 				processPriorQueue(priorqueue, x, y);
 				priorqueue.push(y + x);
 			}
@@ -95,10 +93,8 @@ int main() {
 			{
 				processStack(stack, x, y);
 				stack.push(y - x);
-
 				processQueue(queue, x, y);
 				queue.push(y - x);
-
 				processPriorQueue(priorqueue, x, y);
 				priorqueue.push(y - x);
 			} 
@@ -108,10 +104,8 @@ int main() {
 			{
 				processStack(stack, x, y);
 				stack.push(x * y);
-
 				processQueue(queue, x, y);
 				queue.push(y * x);
-
 				processPriorQueue(priorqueue, x, y);
 				priorqueue.push(y * x);
 			} 
@@ -121,10 +115,8 @@ int main() {
 			{
 				processStack(stack, x, y);
 				stack.push(y / x);
-
 				processQueue(queue, x, y);
 				queue.push(y / x);
-
 				processPriorQueue(priorqueue, x, y);
 				priorqueue.push(y / x);
 			} 
