@@ -2,6 +2,7 @@
 #define BST_h
 #include "NodeT.h"
 #include <iostream>
+#include <queue>
 
 using namespace std;
 
@@ -12,7 +13,17 @@ class BST{
 		bool search(int data);
 		void add(int data);
 		void remove(int data);
-		void print(int tipo);// tipo 1 = preorden // tipo 2 = inorden // tipo 3 = postorden;
+		void print(int tipo);
+		void printLeaves();
+		// tipo 1 = preorden
+		// tipo 2 = inorden
+		// tipo 3 = postorden;
+		// tipo 4 = Imprimir Hojas
+		// tipo 5 = Nivel x Nivel
+		int count();
+		int height();
+		void ancestors(int dato);
+		int whatLevelamI(int dato);
 	private:
 		NodeT *root;
 		int howManyChildren(NodeT *r);
@@ -22,6 +33,10 @@ class BST{
 		void inorden(NodeT *r);
 		void postorden(NodeT *r);
 		void destruye(NodeT *r);
+		void preordenLeaves(NodeT *r);
+		int countRec(NodeT *r);
+		int heightMax(NodeT *r);
+		bool ancestors2(NodeT *r, int dato);
 };
 
 BST::BST(){
@@ -67,6 +82,80 @@ int BST::pred(NodeT *r){
 	return curr->getData();
 }
 
+void BST::preordenLeaves(NodeT *r){
+	if (r != nullptr){
+		if (howManyChildren(r) == 0){
+			cout << r->getData() << " " ;			
+		}
+		else{
+			preordenLeaves(r->getLeft());
+			preordenLeaves(r->getRight());
+		}
+	}
+}
+
+int BST::count(){
+	return countRec(root);
+}
+
+int BST::countRec(NodeT *r){
+	if (r == nullptr){
+		return 0;
+	}
+	return 1 + countRec(r->getLeft())+countRec(r->getRight());
+}
+//----------------------------------------------------------------------------------------------------------------
+//TAREA OPERACIONES BST 1
+int BST::height(){
+	return heightMax(root);
+}
+
+int BST::heightMax(NodeT *r){
+	if (r == nullptr){
+		return 0;
+	}
+
+	else
+	{
+		int maxRight = heightMax(r->getRight());
+		int maxLeft = heightMax(r->getLeft());
+
+		if (maxLeft > maxRight){
+			return (maxLeft + 1);
+		}
+
+		else return (maxRight + 1);
+	}
+}
+
+void BST::ancestors(int dato){
+	if (root == nullptr){
+		cout << "Árbol vacío" << endl;
+		return;
+	}
+
+	if (root->getData() == dato){
+		cout << "El dato solicitado es la ráiz, por lo que no tiene ancestros" << endl;
+		return;
+	}
+
+	NodeT *curr = root;
+	queue<int> fila;
+
+	while (curr->getData() != dato){
+		fila.push(curr->getData());
+		curr = (curr->getData() > dato) ? curr->getLeft() : curr->getRight();
+	}
+
+	cout << "Ancestros de " << dato << " (Iniciando por el padre): ";
+	while (!fila.empty()){
+		cout << fila.front() << " ";
+		fila.pop();
+	}
+	cout << endl;
+}
+//----------------------------------------------------------------------------------------------------------------
+
 void BST::preorden(NodeT *r){
 	if (r != nullptr){
 		cout << r->getData() << " " ;
@@ -98,6 +187,8 @@ void BST::print(int tipo){
 		case 2: inorden(root);
 				break;
 		case 3: postorden(root);
+				break;
+		case 4: preordenLeaves(root);
 				break;
 	}
 	cout << endl;
@@ -208,4 +299,5 @@ void BST::remove(int data){
 				break;
 	}
 }
+
 #endif

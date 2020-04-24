@@ -1,8 +1,7 @@
 #include <iostream>
+#include "BST.h"
 
 using namespace std;
-
-#include "BST.h"
 
 int main(){
 	BST miArbol;
@@ -18,7 +17,6 @@ int main(){
 	miArbol.print(1);
 	miArbol.print(2);
 	miArbol.print(3);
-    
 	if (miArbol.search(8)){
 		cout << "Si esta el 8"<<endl;
 	}
@@ -37,8 +35,12 @@ int main(){
 	else{
 		cout << "No esta el 10" << endl;
 	}
-	miArbol.remove(20);
+	//miArbol.remove(20);
 	miArbol.print(1);
 	miArbol.print(2);
 	miArbol.print(3);
+	miArbol.print(4);
+	cout << "El árbol tiene: "<< miArbol.count() << " nodos" << endl;
+	cout << "La altura del árbol es: "<< miArbol.height() << endl;
+	miArbol.ancestors(10);
 }
