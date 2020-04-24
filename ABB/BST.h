@@ -2,7 +2,7 @@
 #define BST_h
 #include "NodeT.h"
 #include <iostream>
-#include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -130,16 +130,16 @@ int BST::heightMax(NodeT *r){
 
 void BST::ancestors(int dato){
 	NodeT *curr = root;
-	queue<int> fila;
+	stack<int> stack;
 
 	while (curr->getData() != dato){
-		fila.push(curr->getData());
+		stack.push(curr->getData());
 		curr = (curr->getData() > dato) ? curr->getLeft() : curr->getRight();
 	}
 
-	while (!fila.empty()){
-		cout << fila.front() << " ";
-		fila.pop();
+	while (!stack.empty()){
+		cout << stack.top() << " ";
+		stack.pop();
 	}
 }
 //----------------------------------------------------------------------------------------------------------------
