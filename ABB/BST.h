@@ -129,16 +129,6 @@ int BST::heightMax(NodeT *r){
 }
 
 void BST::ancestors(int dato){
-	if (root == nullptr){
-		cout << "Árbol vacío" << endl;
-		return;
-	}
-
-	if (root->getData() == dato){
-		cout << "El dato solicitado es la ráiz, por lo que no tiene ancestros" << endl;
-		return;
-	}
-
 	NodeT *curr = root;
 	queue<int> fila;
 
@@ -147,12 +137,10 @@ void BST::ancestors(int dato){
 		curr = (curr->getData() > dato) ? curr->getLeft() : curr->getRight();
 	}
 
-	cout << "Ancestros de " << dato << " (Iniciando por el padre): ";
 	while (!fila.empty()){
 		cout << fila.front() << " ";
 		fila.pop();
 	}
-	cout << endl;
 }
 //----------------------------------------------------------------------------------------------------------------
 
