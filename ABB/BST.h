@@ -143,15 +143,7 @@ void BST::ancestors(int dato){
 }
 
 int BST::whatLevelamI(int dato){
-	int level = 0;
-	NodeT *curr = root;
-
-	while (curr != nullptr){
-		curr = (curr->getData() > dato) ? curr->getLeft() : curr->getRight();
-		level++;
-	}
-
-	return level;
+	
 }
 //----------------------------------------------------------------------------------------------------------------
 
