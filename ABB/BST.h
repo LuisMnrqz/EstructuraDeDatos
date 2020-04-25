@@ -36,7 +36,6 @@ class BST{
 		void preordenLeaves(NodeT *r);
 		int countRec(NodeT *r);
 		int heightMax(NodeT *r);
-		bool ancestors2(NodeT *r, int dato);
 };
 
 BST::BST(){
@@ -141,6 +140,18 @@ void BST::ancestors(int dato){
 		cout << stack.top() << " ";
 		stack.pop();
 	}
+}
+
+int BST::whatLevelamI(int dato){
+	int level = 0;
+	NodeT *curr = root;
+
+	while (curr != nullptr){
+		curr = (curr->getData() > dato) ? curr->getLeft() : curr->getRight();
+		level++;
+	}
+
+	return level;
 }
 //----------------------------------------------------------------------------------------------------------------
 
