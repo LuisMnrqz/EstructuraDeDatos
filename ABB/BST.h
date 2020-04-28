@@ -3,6 +3,7 @@
 #include "NodeT.h"
 #include <iostream>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -36,6 +37,7 @@ class BST{
 		void preordenLeaves(NodeT *r);
 		int countRec(NodeT *r);
 		int heightMax(NodeT *r);
+		void nivelPorNivel(NodeT *r);
 };
 
 BST::BST(){
@@ -143,7 +145,51 @@ void BST::ancestors(int dato){
 }
 
 int BST::whatLevelamI(int dato){
-	
+	int level = 0;
+	NodeT *curr = root;
+
+	while (curr != nullptr){
+		if (curr->getData() == dato){
+			return level;
+		}
+
+		else
+		{
+			curr = (curr->getData() > dato) ? curr->getLeft() : curr->getRight();
+		}
+		level++;
+	}
+	//No se encuentra
+	return -1;
+}
+
+void BST::nivelPorNivel(NodeT *r){
+	//Árbol vacío
+    if (r == nullptr) {
+		return;
+	}  
+  
+    queue<NodeT *> queue;  
+    queue.push(root);  
+  
+    while (queue.empty() == false) {   
+        int numNodos = queue.size();  
+  
+        while (numNodos > 0) {  
+            NodeT *nodo = queue.front();  
+            cout << nodo->getData() << " ";  
+            queue.pop();  
+
+            if (nodo->getLeft() != nullptr) {
+				queue.push(nodo->getLeft());
+			} 
+
+            if (nodo->getRight() != nullptr) {
+				queue.push(nodo->getRight()); 
+			} 
+            numNodos--;  
+        } 
+    } 
 }
 //----------------------------------------------------------------------------------------------------------------
 
@@ -180,6 +226,8 @@ void BST::print(int tipo){
 		case 3: postorden(root);
 				break;
 		case 4: preordenLeaves(root);
+				break;
+		case 5: nivelPorNivel(root);
 				break;
 	}
 	cout << endl;

@@ -44,5 +44,6 @@ int main(){
 	cout << "La altura del árbol es: "<< miArbol.height() << endl;
 	miArbol.ancestors(8);
 	cout << endl;
-	miArbol.whatLevelamI(20);
+	cout << miArbol.whatLevelamI(10) << endl;
+	miArbol.print(5);
 }
