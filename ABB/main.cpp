@@ -46,4 +46,5 @@ int main(){
 	cout << endl;
 	cout << miArbol.whatLevelamI(10) << endl;
 	miArbol.print(5);
+	cout << miArbol.maxWidth() << endl;
 }

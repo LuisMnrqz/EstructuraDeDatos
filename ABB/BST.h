@@ -25,6 +25,7 @@ class BST{
 		int height();
 		void ancestors(int dato);
 		int whatLevelamI(int dato);
+		int maxWidth();
 	private:
 		NodeT *root;
 		int howManyChildren(NodeT *r);
@@ -38,6 +39,7 @@ class BST{
 		int countRec(NodeT *r);
 		int heightMax(NodeT *r);
 		void nivelPorNivel(NodeT *r);
+		int getWidth(NodeT *r, int level);
 };
 
 BST::BST(){
@@ -193,6 +195,36 @@ void BST::nivelPorNivel(NodeT *r){
 }
 //----------------------------------------------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------------------------------------------
+//TAREA OPERACIONES BST 2
+int BST::maxWidth(){
+	int level = heightMax(root);
+	int maxWidth = 0;
+
+	for (int i = 1; i <= level; i++){
+		int currWidth = getWidth(root, i);
+		if (currWidth > maxWidth){
+			maxWidth = currWidth;
+		}
+	}
+	return maxWidth;
+}
+
+int BST::getWidth(NodeT *r, int level){
+	if (r == nullptr){
+		return 0;
+	}
+
+	if (level == 1){
+		return 1;
+	}
+
+	else if (level > 1){
+		return getWidth(r->getLeft(), level - 1) + getWidth(r->getRight(), level - 1);
+	}
+}
+//----------------------------------------------------------------------------------------------------------------
+
 void BST::preorden(NodeT *r){
 	if (r != nullptr){
 		cout << r->getData() << " " ;
@@ -202,7 +234,7 @@ void BST::preorden(NodeT *r){
 }
 
 void BST::inorden(NodeT *r){
-	if (r!=nullptr){
+	if (r != nullptr){
 		inorden(r->getLeft());
 		cout << r->getData() << " " ;
 		inorden(r->getRight());
