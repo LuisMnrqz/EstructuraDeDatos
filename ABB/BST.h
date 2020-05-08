@@ -26,6 +26,10 @@ class BST{
 		void ancestors(int dato);
 		int whatLevelamI(int dato);
 		int maxWidth();
+		int nearstRelative(int num1, int num2);
+		BST(const BST &copy);
+		bool operator==(const BST &otro);
+		void mirror();
 	private:
 		NodeT *root;
 		int howManyChildren(NodeT *r);
@@ -223,6 +227,35 @@ int BST::getWidth(NodeT *r, int level){
 		return getWidth(r->getLeft(), level - 1) + getWidth(r->getRight(), level - 1);
 	}
 }
+
+int BST::nearstRelative(int num1, int num2){
+	if (root == nullptr){
+		return -1;
+	}
+
+	queue<int> queue1, queue2;
+	NodeT *curr1 = root;
+	while (curr1->getData() != num1){
+		queue1.push(curr1->getData());
+		curr1 = (curr1->getData() > num1) ? curr1->getLeft() : curr1->getRight();
+	}
+	
+	NodeT *curr2 = root;
+	while (curr2->getData() != num2){
+		queue2.push(curr2->getData());
+		curr2 = (curr2->getData() > num2) ? curr2->getLeft() : curr2->getRight();
+	}
+
+	int aux = 0;
+	while (queue1.front() == queue2.front()){
+		aux = queue1.front();
+		queue1.pop();
+		queue2.pop();
+	}
+	return aux;
+}
+
+
 //----------------------------------------------------------------------------------------------------------------
 
 void BST::preorden(NodeT *r){

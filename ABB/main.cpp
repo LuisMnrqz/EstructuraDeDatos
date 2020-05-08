@@ -47,4 +47,6 @@ int main(){
 	cout << miArbol.whatLevelamI(10) << endl;
 	miArbol.print(5);
 	cout << miArbol.maxWidth() << endl;
+	cout << "-------------" << endl;
+	cout << miArbol.nearstRelative(44, 60) << endl;
 }
