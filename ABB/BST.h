@@ -255,7 +255,17 @@ int BST::nearstRelative(int num1, int num2){
 	return aux;
 }
 
+BST::BST(const BST &copy){
 
+}
+
+bool BST::operator==(const BST &otro){
+
+}
+
+void BST::mirror(){
+	
+}
 //----------------------------------------------------------------------------------------------------------------
 
 void BST::preorden(NodeT *r){
