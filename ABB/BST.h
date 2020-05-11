@@ -42,7 +42,7 @@ class BST{
 		int heightMax(NodeT *r);
 		void nivelPorNivel(NodeT *r);
 		int getWidth(NodeT *r, int level);
-		void copyBST(NodeT *i);
+		void copy(NodeT *i);
 };
 
 BST::BST(){
@@ -261,16 +261,18 @@ int BST::nearstRelative(int num1, int num2){
 
 BST::BST(const BST &copia){
     NodeT *i = copia.root;
-    copyBST(i);
+    copy(i);
 }
 
-void BST::copyBST(NodeT	*i){
+void BST::copy(NodeT *i){
     if(i != nullptr){
         this->add(i->getData());
-        copyBST(i->getLeft());
-        copyBST(i->getRight());
+        copy(i->getLeft());
+        copy(i->getRight());
     }
 }
+
+
 //----------------------------------------------------------------------------------------------------------------
 
 void BST::preorden(NodeT *r){
