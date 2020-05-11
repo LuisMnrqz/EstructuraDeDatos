@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-	BST miArbol, arbol2;
+	BST miArbol, arbol2, arbol3, arbol4;
 	miArbol.add(20);
 	miArbol.add(50);
 	miArbol.add(44);
@@ -20,7 +20,20 @@ int main(){
 	miArbol.add(18);
 	miArbol.add(16);
 	miArbol.add(17);
+	arbol2.add(20);
+	arbol2.add(50);
+	arbol2.add(44);
 	arbol2.add(10);
+	arbol2.add(15);
+	arbol2.add(9);
+	arbol2.add(100);
+	arbol2.add(60);
+	arbol2.add(8);
+	arbol2.add(55);
+	arbol2.add(58);
+	arbol2.add(15);
+	arbol2.add(18);
+	arbol2.add(16);
 	miArbol.print(1);
 	miArbol.print(2);
 	miArbol.print(3);
@@ -56,4 +69,16 @@ int main(){
 	cout << miArbol.maxWidth() << endl;
 	cout << "-------------" << endl;
 	cout << miArbol.nearstRelative(50, 10) << endl;
+	if (miArbol == arbol2){
+		cout << "Iguales" << endl;
+	}
+	else
+	{
+		cout << "No iguales" << endl;
+	}
+	cout << "-------------" << endl;
+	BST arbolitoCopy(miArbol);
+	arbolitoCopy.print(1);
+	cout << endl;
+	miArbol.print(1);
 }

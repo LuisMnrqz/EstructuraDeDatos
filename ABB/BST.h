@@ -28,6 +28,8 @@ class BST{
 		int maxWidth();
 		int nearstRelative(int num1, int num2);
 		BST(const BST& copia);
+		bool operator==(const BST& otro);
+		void mirror();
 	private:
 		NodeT *root;
 		int howManyChildren(NodeT *r);
@@ -43,6 +45,8 @@ class BST{
 		void nivelPorNivel(NodeT *r);
 		int getWidth(NodeT *r, int level);
 		void copy(NodeT *i);
+		bool iguales(NodeT *r1, NodeT *r2);
+		void mirrorProcess(NodeT *r);
 };
 
 BST::BST(){
@@ -272,7 +276,41 @@ void BST::copy(NodeT *i){
     }
 }
 
+bool BST::operator==(const BST &otro){
+	return iguales(root, otro.root);
+}
 
+bool BST::iguales(NodeT *r1, NodeT *r2){
+	if (r1 == nullptr && r2 != nullptr || r1 != nullptr && r2 == nullptr){
+		return false;
+	}
+
+	else if (r1 == nullptr && r2 == nullptr){
+		return true;
+	}
+
+	else
+	{
+		return (r1->getData() == r2->getData() &&  iguales(r1->getLeft(), r2->getLeft()) && iguales(r1->getRight(), r2->getRight()));
+	}
+}
+
+void BST::mirror(){
+	mirrorProcess(root);
+}
+
+void BST::mirrorProcess(NodeT *r){
+	if(r == nullptr){
+    	return; 
+  	}
+
+  	mirrorProcess(r->getLeft());
+  	mirrorProcess(r->getRight());
+
+  	NodeT *temp = r->getLeft();
+  	r->setLeft(r->getRight());  
+  	r->setRight(temp);
+}
 //----------------------------------------------------------------------------------------------------------------
 
 void BST::preorden(NodeT *r){
