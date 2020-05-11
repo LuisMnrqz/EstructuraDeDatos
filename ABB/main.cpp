@@ -55,6 +55,5 @@ int main(){
 	miArbol.print(5);
 	cout << miArbol.maxWidth() << endl;
 	cout << "-------------" << endl;
-	cout << miArbol.nearstRelative(16, 17) << endl;
-	arbol2.mirror();
+	cout << miArbol.nearstRelative(50, 10) << endl;
 }

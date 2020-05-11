@@ -27,6 +27,7 @@ class BST{
 		int whatLevelamI(int dato);
 		int maxWidth();
 		int nearstRelative(int num1, int num2);
+		BST(const BST& copia);
 	private:
 		NodeT *root;
 		int howManyChildren(NodeT *r);
@@ -41,6 +42,7 @@ class BST{
 		int heightMax(NodeT *r);
 		void nivelPorNivel(NodeT *r);
 		int getWidth(NodeT *r, int level);
+		void copyBST(NodeT *i);
 };
 
 BST::BST(){
@@ -249,12 +251,25 @@ int BST::nearstRelative(int num1, int num2){
 		//Caso que los dos elementos a buscar son hijos del mismo padre, ya que si se quedan ambas filas vacías el valor de retorno será 0
 		//El único caso en el que las ambas filas llegan a tener tamaño de 1 independientemente del nivel en el que se encuentren, es que los elementos que se están buscando son hijos del mismo padre
 		if (queue1.size() && queue2.size() == 1){
-		return aux;
+			return aux;
 		}
 		queue1.pop();
 		queue2.pop();
 	}
 	return aux;
+}
+
+BST::BST(const BST &copia){
+    NodeT *i = copia.root;
+    copyBST(i);
+}
+
+void BST::copyBST(NodeT	*i){
+    if(i != nullptr){
+        this->add(i->getData());
+        copyBST(i->getLeft());
+        copyBST(i->getRight());
+    }
 }
 //----------------------------------------------------------------------------------------------------------------
 
