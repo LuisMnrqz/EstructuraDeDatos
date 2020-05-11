@@ -27,9 +27,6 @@ class BST{
 		int whatLevelamI(int dato);
 		int maxWidth();
 		int nearstRelative(int num1, int num2);
-		BST(const BST &copy);
-		bool operator==(const BST &otro);
-		void mirror();
 	private:
 		NodeT *root;
 		int howManyChildren(NodeT *r);
@@ -249,22 +246,15 @@ int BST::nearstRelative(int num1, int num2){
 	int aux = 0;
 	while (queue1.front() == queue2.front()){
 		aux = queue1.front();
+		//Caso que los dos elementos a buscar son hijos del mismo padre, ya que si se quedan ambas filas vacías el valor de retorno será 0
+		//El único caso en el que las ambas filas llegan a tener tamaño de 1 independientemente del nivel en el que se encuentren, es que los elementos que se están buscando son hijos del mismo padre
+		if (queue1.size() && queue2.size() == 1){
+		return aux;
+		}
 		queue1.pop();
 		queue2.pop();
 	}
 	return aux;
-}
-
-BST::BST(const BST &copy){
-
-}
-
-bool BST::operator==(const BST &otro){
-
-}
-
-void BST::mirror(){
-	
 }
 //----------------------------------------------------------------------------------------------------------------
 

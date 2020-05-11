@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-	BST miArbol;
+	BST miArbol, arbol2;
 	miArbol.add(20);
 	miArbol.add(50);
 	miArbol.add(44);
@@ -14,6 +14,13 @@ int main(){
 	miArbol.add(100);
 	miArbol.add(60);
 	miArbol.add(8);
+	miArbol.add(55);
+	miArbol.add(58);
+	miArbol.add(15);
+	miArbol.add(18);
+	miArbol.add(16);
+	miArbol.add(17);
+	arbol2.add(10);
 	miArbol.print(1);
 	miArbol.print(2);
 	miArbol.print(3);
@@ -48,5 +55,6 @@ int main(){
 	miArbol.print(5);
 	cout << miArbol.maxWidth() << endl;
 	cout << "-------------" << endl;
-	cout << miArbol.nearstRelative(44, 60) << endl;
+	cout << miArbol.nearstRelative(16, 17) << endl;
+	arbol2.mirror();
 }
