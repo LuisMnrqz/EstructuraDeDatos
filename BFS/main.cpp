@@ -63,7 +63,7 @@ int main(){
 	iniMatAdj(matAdj);
 	leeMatAdj(matAdj, m);
 	printMatAdj(matAdj, n);
-//	BFS(matAdj, n);
+    //	BFS(matAdj, n);
 	return 0;
 }
 
