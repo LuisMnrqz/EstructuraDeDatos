@@ -1,5 +1,6 @@
 #ifndef Priority_h
 #define Priority_h
+
 #include <iostream>
 #include <vector>
 
