@@ -1,5 +1,6 @@
 #include <iostream>
-#include <unordered_map>
+#include <map>
+#include <vector>
 
 using namespace std;
 
@@ -28,9 +29,42 @@ using namespace std;
     daddy
 */
 
+void print(vector<string> const &input){
+    for (int i = 0; i > input.size(); i++){
+        cout << input.at(i) << endl;
+    }
+}
+
 int main () {
 
-    
+    int numActions, number;
+    string action, name;
+    map<int, string> phonebook;
+    vector<string> output;
+
+    cin >> numActions;
+    cout << endl;
+    for (int i = 1; i <= numActions; i++){
+        cin >> action;
+        if (action == "add"){
+           cin >> number >> name; 
+           phonebook[number] = name;
+        }
+        else if (action == "del"){
+            cin >> number;
+            phonebook.erase(number);
+        }
+        else if (action == "find"){
+            if (phonebook.find(number) != phonebook.end()){
+                output.push_back(phonebook[number]);
+            }
+            else{
+                output.push_back("not found");
+            }
+        }
+    }
+
+    print(output);
 
     return 0;
 }
