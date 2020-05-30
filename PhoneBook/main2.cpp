@@ -24,7 +24,7 @@ void print(vector<string> const &input){
 }
 
 int main() {
-map<int, string> phoneBook;
+map<int, string> phonebook;
 vector<string> output;
   string option;
   int n, number;
@@ -38,19 +38,19 @@ vector<string> output;
     switch(resolveOp(option)){
       case Add:  
         cin >> number >> name;
-        phoneBook[number] = name;
+        phonebook[number] = name;
       break;
       case Del:
       cin >> number;
-      phoneBook.erase(number);
+      phonebook.erase(number);
       break;
       case Find:
         cin >> number;
-        if (phoneBook.find(number) != phoneBook.end()){
-          cout << phoneBook[number] << endl;
+        if (phonebook.find(number) != phonebook.end()){
+          output.push_back(phonebook[number]);
         }
         else{
-          cout << "not found"<< endl;
+          output.push_back("not found");
         }
       break;
       default:

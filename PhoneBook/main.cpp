@@ -43,7 +43,6 @@ int main () {
     vector<string> output;
 
     cin >> numActions;
-    cout << endl;
     for (int i = 1; i <= numActions; i++){
         cin >> action;
         if (action == "add"){
