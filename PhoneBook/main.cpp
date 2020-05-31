@@ -54,6 +54,7 @@ int main () {
             phonebook.erase(number);
         }
         else if (action == "find"){
+            cin >> number;
             if (phonebook.find(number) != phonebook.end()){
                 output.push_back(phonebook[number]);
             }
